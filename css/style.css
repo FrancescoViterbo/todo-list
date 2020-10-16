@@ -13,11 +13,15 @@ body {
 
 .full-page {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 header {
     font-size: 1.5rem;
+}
+
+#logout {
+    display: none;
 }
 
 header, form {
@@ -26,7 +30,7 @@ header, form {
 }
 
 .create-todo {
-    margin: 3rem;
+    padding: 3rem;
 }
 
 form input, form button {
@@ -128,7 +132,7 @@ option {
 
 .todo li {
     flex: 1;
-    transition: all 1s ease;
+    transition: all 0.5s ease;
 }
 
 .delete-btn, .complete-btn {
@@ -162,7 +166,7 @@ option {
 }
 
 .fall {
-    animation: toTrash 1.5s ease-in forwards;
+    animation: toTrash 0.7s ease-in forwards;
 }
 
 .align-right {
@@ -172,7 +176,7 @@ option {
 }
 
 .disappear {
-    animation: disappear 0.5s ease forwards;
+    animation: disappear 0.3s ease forwards;
 }
 
 @keyframes toTrash {
