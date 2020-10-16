@@ -3,13 +3,14 @@
 const todoInput = document.querySelector('.todo-input');
 const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
-const alerts = document.getElementById('alerts')
+const alerts = document.getElementById('alerts');
+const filterOption = document.querySelector(".filter-todo");
 
 // Event Listeners
 
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
-// todoButton.addEventListener('click', addTodo);
+filterOption.addEventListener('click', filterTodo)
 
 // Functions
 
@@ -21,6 +22,7 @@ function addTodo(event) {
         alerts.innerHTML = "";
         const todoDiv = document.createElement('div');
         todoDiv.classList.add("todo");
+        // todoDiv.classList.add("uncompleted");
         const newTodo = document.createElement('li');
         newTodo.innerHTML = todoInput.value;
         newTodo.classList.add("todo-item");
@@ -47,7 +49,7 @@ function deleteCheck(e) {
         const todo = item.parentElement;
         var height = todo.offsetHeight;
         height = height.toString() + "px";
-        const text = todo.children[0];
+        var text = todo.children[0];
         const check = todo.children[1];
         check.classList.add("disappear");
         todo.style.height = height;
@@ -62,5 +64,32 @@ function deleteCheck(e) {
     } else if (item.classList[0] === "complete-btn") {
         const todo = item.parentElement;
         todo.classList.toggle("completed");
+        // todo.classList.remove("uncompleted");
     }
+}
+
+function filterTodo(e) {
+    const todos = todoList.childNodes;
+    console.log(todos);
+    todos.forEach(function(todo){
+        switch(e.target.value){
+            case "all":
+                todo.style.display = "flex";
+                break;
+            case "completed":
+                if(todo.classList.contains('completed')){
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
+                break;
+            case "uncompleted":
+                if(!todo.classList.contains('completed')){
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
+                break;
+        }
+    });
 }
