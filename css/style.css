@@ -21,8 +21,12 @@ header {
 }
 
 header, form {
-    min-height: 20vh;
+    min-height: 10vh;
     text-align: center;
+}
+
+.create-todo {
+    margin: 3rem;
 }
 
 form input, form button {
@@ -40,7 +44,19 @@ form button {
 
 form button:hover {
     color: black;
-    background-color: #d6676d;
+    background-color: #dab63f;
+}
+
+form div {
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#alerts {
+    color: red;
+    background-color: white;
+    width: 30%;
 }
 
 .todo-container {
@@ -55,6 +71,7 @@ form button:hover {
 }
 
 .todo {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -63,21 +80,24 @@ form button:hover {
     background-color: white;
     font-size: 1.5rem;
     padding: 0.3rem 0.8rem;
+    transition: all 0.5s ease;
 }
 
 .todo li {
     flex: 1;
+    transition: all 1s ease;
 }
 
 .delete-btn, .complete-btn {
     background: none;
     border: none;
     margin-left: 0.5rem;
+    cursor: pointer;
 }
 
 .delete-btn img, .complete-btn img {
     width: 30px;
-    cursor: pointer;
+    pointer-events: none;
     border-radius: 5px;
 }
 
@@ -87,4 +107,45 @@ form button:hover {
 
 .complete-btn img {
     background: rgb(5, 65, 30);
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.fall {
+    animation: toTrash 1.5s ease-in forwards;
+}
+
+.align-right {
+    position: absolute;
+    right: 0;
+    transform: translate(-50%, 0);
+}
+
+.disappear {
+    animation: disappear 0.5s ease forwards;
+}
+
+@keyframes toTrash {
+    from {
+        position: absolute;
+        left: 0;
+        transform: translate(50%, 0);
+        opacity: 1;
+    } to {
+        position: absolute;
+        left: calc(100%);
+        transform: translate(-100%, 0);
+        opacity: 0;
+    }
+}
+
+@keyframes disappear {
+    from {
+        opacity: 1;
+    } to {
+        opacity: 0;
+    }
 }
